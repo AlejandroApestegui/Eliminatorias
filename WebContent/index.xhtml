@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:form id="myForm">
+	<h:panelGrid columns="5">
+
+		<h:selectOneMenu value="#{cResultado.juego.pais1}">
+			<f:selectItems value="#{cResultado.lstPaises}" var="pais"
+				itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
+		</h:selectOneMenu>
+		<h:inputText value="#{cResultado.juego.goles1}" required="true"
+			id="g1" requiredMessage=")Ingresar los goles del pais 1">
+		</h:inputText>
+
+		<h:outputText value="____"></h:outputText>
+		<h:inputText value="#{cResultado.juego.goles2}" required="true"
+			id="g2" requiredMessage=")Ingresar los goles del pais 2">
+		</h:inputText>
+		<h:selectOneMenu value="#{cResultado.juego.pais2}">
+			<f:selectItems value="#{cResultado.lstPaises}" var="pais"
+				itemLabel="#{pais.nombre}" itemValue="#{pais.id}" />
+		</h:selectOneMenu>
+
+
+	</h:panelGrid>
+	<h:outputLabel value="#{cResultado.mensaje}"></h:outputLabel>
+	<br></br>
+	<h:message for="myForm:g1"></h:message>
+	<h:message for="myForm:g2"></h:message>
+	<h:commandButton value="Guardar" action="#{cResultado.guardar}">
+	</h:commandButton>
+</h:form>
+
+
+<h:dataTable value="#{cResultado.lstResultados}" var="res" border="1">
+	<h:column>
+		<f:facet name="header">País</f:facet>
+	  			#{res.pais.nombre}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">PJ</f:facet>
+	  			#{res.partidosJugados}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">PG</f:facet>
+	  			#{res.partidosGanados}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">PP</f:facet>
+	  			#{res.partidosPerdidos}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">PE</f:facet>
+	  			#{res.partidosEmpatados}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">GA</f:facet>
+	  			#{res.golesAnotados}
+	  		</h:column>
+	<h:column>
+		<f:facet name="header">Puntos</f:facet>
+	  			#{res.puntos}
+	  		</h:column>
+</h:dataTable>
+</html>
